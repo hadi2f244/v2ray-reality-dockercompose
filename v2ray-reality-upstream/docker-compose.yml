@@ -1,0 +1,14 @@
+version: "3"
+services:
+  xray:
+    image: teddysun/xray:1.8.1
+    ports:
+    - 443:443
+    - 8443:8443
+    restart: always
+    environment:
+    - "TZ=Etc/UTC"
+    volumes:
+    - ./xray.conf:/etc/xray/config.json
+
+
