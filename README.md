@@ -1,20 +1,21 @@
 # v2ray-reality-dockercompose
 
 # Requirements
-* Update V2ray client: https://github.com/2dust/v2rayN/releases to support *Reality*
-* Required *Docker* and *Docker Compose* installed on servers
+* Update V2ray client: https://github.com/2dust/v2rayNG/releases to support *Reality*
+* Require *Docker* and *Docker Compose* installed on servers
 
 # Initilization
 ```
 
 # Run these commands on any system that has docker installed
 
+
 export BRIDGE_IP=""
 export UPSTREAM_IP=""
 
 xray_image="teddysun/xray:1.8.1"
 key_pair=$(sudo docker run --rm ${xray_image} xray x25519)
-
+git clone https://github.com/hadi2f244/v2ray-reality-dockercompose && cd v2ray-reality-dockercompose
 export BRIDGE_UUID=$(cat /proc/sys/kernel/random/uuid)
 export UPSTREAM_UUID=$(cat /proc/sys/kernel/random/uuid)
 export PRIVATE_KEY=$(echo "${key_pair}"|grep -oP '(?<=Private key: ).*')
@@ -100,3 +101,9 @@ https://github.com/miladrahimi/v2ray-docker-compose/
 https://telegra.ph/How-run-Reality-protocol-with-Xray-or-Sing-box-Core-with-iSegaro-04-18
 
 https://github.com/XTLS/RealiTLScanner
+
+https://github.com/SasukeFreestyle/XTLS-Iran-Reality
+
+https://github.com/sajjaddg/xray-reality
+
+https://twitter.com/iSegaro
