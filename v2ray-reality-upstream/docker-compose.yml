@@ -9,6 +9,6 @@ services:
     environment:
     - "TZ=Etc/UTC"
     volumes:
-    - ./xray.conf:/etc/xray/config.json
+    - ./xray_upstream.conf:/etc/xray/config.json
 
 

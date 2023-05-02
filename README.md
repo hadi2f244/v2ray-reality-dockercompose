@@ -9,21 +9,23 @@
 
 # Run these commands on any system that has docker installed
 
-BRIDGE_IP = ""
-UPSTREAM_IP = ""
+export BRIDGE_IP=""
+export UPSTREAM_IP=""
 
 xray_image="teddysun/xray:1.8.1"
 key_pair=$(sudo docker run --rm ${xray_image} xray x25519)
-UPSTREAM_UUID=$(cat /proc/sys/kernel/random/uuid)
-BRIDGE_UUID=$(cat /proc/sys/kernel/random/uuid)
-PRIVATE_KEY=$(echo "${key_pair}"|grep -oP '(?<=Private key: ).*')
-PUBLIC_KEY=$(echo "${key_pair}"|grep -oP '(?<=Public key: ).*')
-SNIPORT_IRANCELL=www.google-analytics.com:443
-SNI_IRANCELL=www.google-analytics.com
-SNIPORT_MCI=www.googletagmanager.com:443
-SNI_MCI=www.googletagmanager.com
+
+export BRIDGE_UUID=$(cat /proc/sys/kernel/random/uuid)
+export UPSTREAM_UUID=$(cat /proc/sys/kernel/random/uuid)
+export PRIVATE_KEY=$(echo "${key_pair}"|grep -oP '(?<=Private key: ).*')
+export PUBLIC_KEY=$(echo "${key_pair}"|grep -oP '(?<=Public key: ).*')
+export SNIPORT_IRANCELL=www.google-analytics.com:443
+export SNI_IRANCELL=www.google-analytics.com
+export SNIPORT_MCI=www.googletagmanager.com:443
+export SNI_MCI=www.googletagmanager.com
 echo ""
-echo "UUID: $UUID"
+echo "BRIDGE_UUID: $BRIDGE_UUID"
+echo "UPSTREAM_UUID: $UPSTREAM_UUID"
 echo "PRIVATE_KEY: $PRIVATE_KEY"
 echo "PUBLIC_KEY: $PUBLIC_KEY"
 echo "SNIPORT_IRANCELL: $SNIPORT_IRANCELL"
@@ -31,7 +33,9 @@ echo "SNI_IRANCELL: $SNI_IRANCELL"
 echo "SNIPORT_MCI: $SNIPORT_MCI"
 echo "SNI_MCI: $SNI_MCI"
 
-## Fill xray.conf files using these values
+## Fill xray.conf files using these values Or you can use these scripts as well
+cp v2ray-reality-bridge/xray_bridge.conf v2ray-reality-bridge/xray_bridge.conf.tmpl && envsubst < v2ray-reality-bridge/xray_bridge.conf.tmpl > v2ray-reality-bridge/xray.conf
+cp v2ray-reality-upstream/xray_upstream.conf v2ray-reality-upstream/xray_upstream.conf.tmpl && envsubst < v2ray-reality-upstream/xray_upstream.conf.tmpl > v2ray-reality-upstream/xray.conf
 
 # Create client configs (Don't forget to replace variables (UPSTREAM_IP and BRIDGE_IP))
 
