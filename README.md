@@ -83,7 +83,7 @@ echo ""
 # Notes:
 * It seems Irancell and MCI configs are not working on some IPs
 * grpc configs sometimes works better that simple reality
-
+* Use [RealiTLScanner](https://github.com/XTLS/RealiTLScanner) to find good options for SNI on your network. 
 
 ## Todo
 * Automate variable initializations : ``` cat xray.conf.tmpl | evnsubst > xray.conf ```
